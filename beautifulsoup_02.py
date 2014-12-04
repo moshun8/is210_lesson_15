@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""Lesson 15 Task 02 """
+
 import urllib2
 from bs4 import BeautifulSoup
 
@@ -8,12 +12,7 @@ HTML_SOUP = BeautifulSoup(DATA)
 
 def obama_net_neutrality():
     '''obama speech docstring'''
-    speech = HTML_SOUP.findAll('p', {'class': 'intro-paragraph'})
+    speech = HTML_SOUP.find_all('p', {'class': 'intro-paragraph'})
     for lines in speech:
-        print lines
-# print obama_net_neutrality()
-
-# if __name__ == '__main__':
-#     # You can use this conditional block for debugging
-#     print HTML_SOUP
-#     pass
+        together = lines.contents[0]
+        print together
