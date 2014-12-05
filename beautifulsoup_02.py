@@ -15,4 +15,4 @@ def obama_net_neutrality():
     speech = HTML_SOUP.find_all('p', {'class': 'intro-paragraph'})
     for lines in speech:
         together = lines.contents[0]
-        print together
+    return together
