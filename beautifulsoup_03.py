@@ -14,20 +14,20 @@ def sps_it_department():
     '''finds names and emails and puts in dict'''
     card_list = []
 
-    cards = SOUP.find_all('div', {'class': 'card unit size1of2'})
-    # cards = SOUP.find('div', {'class':'card unit size1of2'})
+    cards = SOUP.find('div', {'class': 'list-view mam'})
+
     for person in cards:
-        names = person.find_all('span', {'class': 'name-bold'})
-        mailtos = person.select('a[href^=mailto]')
+        mailtos = cards.select('a[href^=mailto]')
+        names = cards.findAll('span', {'class': 'name-bold'})
 
         for partof, entry in enumerate(names):
-            last_first = entry.split(',').strip()
+            last_first = entry.strip().split(',')
             card_dict = {
-                'email': partof.contents[0],
+                'email': mailtos.get_text(),
                 'first_name': last_first[1],
                 'last_name': last_first[0]
             }
-        return card_list.append(card_dict)
+            return card_list.append(card_dict)
 
 
 if __name__ == '__main__':
